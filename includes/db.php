@@ -1,9 +1,9 @@
-
 <?php
-$host = 'localhost';
-$dbname = 'algadepe';
-$username = 'root';
-$password = '';
+
+$host = "localhost";
+$dbname = "portfolio_db";
+$username = "root";
+$password = "";
 
 try {
     $pdo = new PDO(
@@ -12,11 +12,17 @@ try {
         $password
     );
 
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    $pdo->setAttribute(
+        PDO::ATTR_ERRMODE,
+        PDO::ERRMODE_EXCEPTION
+    );
+
+    $pdo->setAttribute(
+        PDO::ATTR_DEFAULT_FETCH_MODE,
+        PDO::FETCH_ASSOC
+    );
 
 } catch (PDOException $e) {
     error_log($e->getMessage());
-    die("Database connection failed. Please try again later.");
+    exit("Database connection failed. Please try again later.");
 }
-?>
