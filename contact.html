@@ -11,7 +11,7 @@
 <body>
   <header class="site-header">
     <div class="container header-inner">
-      <a href="index.html" class="logo">JM Algadepe</a>
+      <a href="index.html" class="logo" data-site-logo>JM Algadepe</a>
       <nav aria-label="Main navigation">
         <ul class="nav-list" id="nav-list">
         <li><a href="index.html">Home</a></li>
@@ -36,26 +36,34 @@
         <div>
           <p class="lead">Feel free to reach out about projects, questions, or opportunities.</p>
           <ul class="contact-list">
-            <li><strong>Email:</strong> <a href="mailto:youremail@example.com">algadepejohnmark.com</a></li>
+            <li><strong>Email:</strong> <a href="mailto:youremail@example.com" data-profile-email>algadepejohnmark.com</a></li>
             <li><strong>GitHub:</strong> <a href="https://github.com/" target="_blank" rel="noopener">github.com/algadepe_jm</a></li>
             <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/" target="_blank" rel="noopener">linkedin.com/in/algadepe_jm</a></li>
           </ul>
         </div>
-        <form id="contact-form" class="card" novalidate>
+        <form id="contact-form" class="card" method="post" action="submit_message.php" novalidate>
+          <h2>Send a message</h2>
+          <p class="contact-form-intro">Your message will be saved to the administrator’s Messages inbox.</p>
+          <input type="hidden" id="contact-csrf-token" name="csrf_token" value="">
+          <div aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;">
+            <label for="website">Leave this field empty</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+          </div>
           <label for="name">Name</label>
-          <input type="text" id="name" name="name">
+          <input type="text" id="name" name="name" maxlength="150" autocomplete="name" required>
           <span class="error" id="name-error"></span>
 
           <label for="email">Email</label>
-          <input type="email" id="email" name="email">
+          <input type="email" id="email" name="email" maxlength="150" autocomplete="email" required>
           <span class="error" id="email-error"></span>
 
           <label for="message">Message</label>
-          <textarea id="message" name="message" rows="5"></textarea>
+          <textarea id="message" name="message" rows="5" maxlength="5000" required></textarea>
           <span class="error" id="message-error"></span>
 
           <button type="submit" class="btn">Send Message</button>
-          <p class="success" id="form-success" hidden>Thank you! Your message has been sent.</p>
+          <p class="success" id="form-success" role="status" hidden>Thank you! Your message has been sent.</p>
+          <p class="error" id="form-server-error" role="alert" hidden></p>
         </form>
       </div>
     </section>
@@ -63,7 +71,7 @@
 
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; 2026 JM Algadepe. All rights reserved.</p>
+      <p data-footer-text>&copy; 2026 JM Algadepe. All rights reserved.</p>
     </div>
   </footer>
 

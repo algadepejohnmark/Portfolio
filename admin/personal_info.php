@@ -6,12 +6,15 @@ require_once __DIR__ . '/includes/auth.php';
 requireAdmin();
 
 $message = '';
+$csrfToken = getCsrfToken();
 
 $stmt = $pdo->query("SELECT * FROM personal_info ORDER BY id DESC LIMIT 1");
 $personal = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
+    if (!verifyCsrfToken($_POST['csrf_token'] ?? '')) {
+        $message = 'Your session token expired. Please reload the page and try again.';
+    } else {
     $full_name = trim($_POST['full_name'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $phone = trim($_POST['phone'] ?? '');
@@ -60,6 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $pdo->query("SELECT * FROM personal_info ORDER BY id DESC LIMIT 1");
         $personal = $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    }
 }
 ?>
 
@@ -81,6 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
    
 <form method="POST">
+    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?>">
 
     <label>Full Name</label><br>
     <input

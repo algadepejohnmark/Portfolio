@@ -134,6 +134,7 @@ h2:first-child { margin-top: 0; }
 .acc-panel p { margin: 12px 0; }
 
 .contact-list li { margin-bottom: 10px; }
+.contact-form-intro { margin: -4px 0 18px; color: var(--muted); }
 form label { display: block; margin: 14px 0 6px; font-weight: 500; }
 form input, form textarea {
   width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius);

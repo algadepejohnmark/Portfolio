@@ -64,7 +64,10 @@ requireAdmin();
 
         <p>You are successfully logged in.</p>
 
-        <a class="logout" href="logout.php">Logout</a>
+        <form method="post" action="logout.php">
+            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(getCsrfToken(), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?>">
+            <button class="logout" type="submit">Logout</button>
+        </form>
     </div>
 
     <div class="menu">

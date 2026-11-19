@@ -1,4 +1,6 @@
-/includes/db.php
+/includes/db.local.php
+/includes/db.infinityfree.credentials.php
+/includes/db.infinityfree.enabled
 /test_connection.php
 /test_db.php
 /setup_admin.php

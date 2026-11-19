@@ -2,6 +2,11 @@
 
 require_once __DIR__ . '/includes/auth.php';
 
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !verifyCsrfToken($_POST['csrf_token'] ?? '')) {
+    http_response_code(405);
+    exit('Invalid logout request.');
+}
+
 $_SESSION = [];
 
 if (ini_get('session.use_cookies')) {
